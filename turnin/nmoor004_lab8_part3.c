@@ -30,45 +30,27 @@ int main(void) {
 	//unsigned char my_char = (char)my_short; // my_char = 0xCD
 	unsigned short max_light = 0x00;
 	unsigned short min_light = 0xFF;
-	unsigned short max_88 = ;
-	unsigned short max_78 = ;
-	unsigned short max_68 = ;
-	unsigned short max_58 = ;
-	unsigned short max_48 = ;
-	unsigned short max_38 = ;
-	unsigned short max_28 = ;
-	unsigned short max_18 = ; 
-	//Make sure to calc these values later next Wed or something
     /* Insert your solution below */
     while (1) {
 	my_short = ADC;
+	if (my_short > max_light) {
+		max_light = my_short;
+	} 
 
-	
-	if (my_short >= max_18) {
+	if (my_short < min_light) {
+		min_light = my_short;
+	}
+
+	if (my_short >= (max_light/2)) {
 		PORTB = 0x01;
 	}
-	else if (my_short >= max_28) {
-		PORTB = 0x03;
+	else {
+		PORTB = 0x00;
 	}
-	else if (my_short >= max_38) {
-		PORTB = 0x07;
-	}
-	else if (my_short >= max_48) {
-		PORTB = 0x0F;
-	}
-	else if (my_short >= max_58) {
-		PORTB = 0x1F;
-	}
-	else if (my_short >= max_68) {
-		PORTB = 0x3F;
-	}
-	else if (my_short >= max_78) {
-		PORTB = 0x7F;
-	}
-	else if (my_short >= max_88) {
-		PORTB = 0xFF;
-	}
-
+	
+	//my_char = (char)(my_short >> 4); // my_char = 0xBC
+	//PORTB = ADC;
+	//PORTD = my_char;
 	
 
     }
