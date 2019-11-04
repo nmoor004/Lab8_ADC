@@ -22,17 +22,29 @@ void ADC_init() {
 
 int main(void) {
     /* Insert DDR and PORT initializations */
-	DDRA = 0xFF; PORTA = 0x00;   // output
-	DDRB = 0x00; PORTB = 0xFF;  // input
+	DDRA = 0x00; PORTA = 0xFF;   // input
+	DDRB = 0xFF; PORTB = 0x00;  // output
 	DDRD = 0xFF; PORTD = 0x00; // output
 	ADC_init();
 	unsigned short my_short = PINA;
 	unsigned char my_char = (char)my_short; // my_char = 0xCD
-
+	//unsigned short max_light = 0x00;
+	//unsigned short min_light = 0xFF;
     /* Insert your solution below */
+
+	//MAX_LIGHT IS 0x030
+	//MIN_LIGHT IS 0x01F
     while (1) {
 	my_short = ADC;
-	my_char = (char)(my_short >> 4); // my_char = 0xBC
+	/*if (my_short > max_light) {
+		max_light = my_short;
+	} 
+
+	if (my_short < min_light) {
+		min_light = my_short;
+	}*/
+	
+	my_char = (char)(my_short >> 8); // my_char = 0xAB
 	PORTB = ADC;
 	PORTD = my_char;
 	

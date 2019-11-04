@@ -26,26 +26,51 @@ int main(void) {
 	DDRB = 0xFF; PORTB = 0x00;  // input
 	DDRD = 0xFF; PORTD = 0x00; // output
 	ADC_init();
-
-	//MAX_LIGHT w/ 330 OHM IS 0x30
 	unsigned short my_short = PINA;
-	unsigned char my_char = (char)my_short; // my_char = 0xCD
-	//unsigned short max_light = 0x00;
-	//unsigned short min_light = 0xFF;
+	//unsigned char my_char = (char)my_short; // my_char = 0xCD
+
+	unsigned short max_88 = 0x30;
+	unsigned short max_78 = 0x2E;
+	unsigned short max_68 = 0x2C;
+	unsigned short max_58 = 0x27;
+	unsigned short max_48 = 0x25;
+	unsigned short max_38 = 0x22;
+	unsigned short max_28 = 0x21;
+	unsigned short max_18 = 0x20; 
+	//Make sure to calc these values later next Wed or something
     /* Insert your solution below */
     while (1) {
 	my_short = ADC;
-	/*if (my_short > max_light) {
-		max_light = my_short;
-	} 
 
-	if (my_short < min_light) {
-		min_light = my_short;
-	}*/
 	
-	my_char = (char)(my_short >> 4); // my_char = 0xBC
-	PORTB = ADC;
-	PORTD = my_char;
+	if (my_short >= max_88) {
+		PORTB = 0xFF;
+	}
+	else if (my_short >= max_78) {
+		PORTB = 0x7F;
+	}
+	else if (my_short >= max_68) {
+		PORTB = 0x3F;
+	}
+	else if (my_short >= max_58) {
+		PORTB = 0x1F;
+	}
+	else if (my_short >= max_48) {
+		PORTB = 0x0F;
+	}
+	else if (my_short >= max_38) {
+		PORTB = 0x07;
+	}
+	else if (my_short >= max_28) {
+		PORTB = 0x04;
+	}
+	else if (my_short >= max_18) {
+		PORTB = 0x01;
+	}
+	else {
+		PORTB = 0x00;
+	}
+
 	
 
     }
